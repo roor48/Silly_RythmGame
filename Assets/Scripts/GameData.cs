@@ -46,6 +46,10 @@ public class GameData : MonoBehaviour
 
     private void Start()
     {
+        var temp = FindObjectsOfType<GameData>();
+        if (temp.Length > 1)
+            Destroy(this.gameObject);
+        
         DontDestroyOnLoad(this.gameObject);
         isBackMusic = PlayerPrefs.GetInt("isBackMusic", 1);
         isSound = PlayerPrefs.GetInt("isSound", 1);
@@ -55,18 +59,14 @@ public class GameData : MonoBehaviour
         effect = PlayerPrefs.GetInt("effect", 1);
 
 
-        for (int i = 0; i < 8; i++)
-        {
-            keyCode[i] = PlayerPrefs.GetInt($"Line{i}", i) == i ? (KeyCode)i : (KeyCode)PlayerPrefs.GetInt($"Line{i}");
-        }
-        // keyCode[0] = PlayerPrefs.GetInt("Line1", (int)KeyCode.A) == (int)KeyCode.A ? KeyCode.A : (KeyCode)PlayerPrefs.GetInt("Line1");
-        // keyCode[1] = PlayerPrefs.GetInt("Line2", (int)KeyCode.S) == (int)KeyCode.S ? KeyCode.S : (KeyCode)PlayerPrefs.GetInt("Line2");
-        // keyCode[2] = PlayerPrefs.GetInt("Line3", (int)KeyCode.D) == (int)KeyCode.D ? KeyCode.D : (KeyCode)PlayerPrefs.GetInt("Line3");
-        // keyCode[3] = PlayerPrefs.GetInt("Line4", (int)KeyCode.F) == (int)KeyCode.F ? KeyCode.F : (KeyCode)PlayerPrefs.GetInt("Line4");
-        // keyCode[4] = PlayerPrefs.GetInt("Line5", (int)KeyCode.H) == (int)KeyCode.H ? KeyCode.H : (KeyCode)PlayerPrefs.GetInt("Line5");
-        // keyCode[5] = PlayerPrefs.GetInt("Line6", (int)KeyCode.J) == (int)KeyCode.J ? KeyCode.J : (KeyCode)PlayerPrefs.GetInt("Line6");
-        // keyCode[6] = PlayerPrefs.GetInt("Line7", (int)KeyCode.K) == (int)KeyCode.K ? KeyCode.K : (KeyCode)PlayerPrefs.GetInt("Line7");
-        // keyCode[7] = PlayerPrefs.GetInt("Line8", (int)KeyCode.L) == (int)KeyCode.L ? KeyCode.L : (KeyCode)PlayerPrefs.GetInt("Line8");
+        keyCode[0] = PlayerPrefs.GetInt("Line1", (int)KeyCode.A) == (int)KeyCode.A ? KeyCode.A : (KeyCode)PlayerPrefs.GetInt("Line1");
+        keyCode[1] = PlayerPrefs.GetInt("Line2", (int)KeyCode.S) == (int)KeyCode.S ? KeyCode.S : (KeyCode)PlayerPrefs.GetInt("Line2");
+        keyCode[2] = PlayerPrefs.GetInt("Line3", (int)KeyCode.D) == (int)KeyCode.D ? KeyCode.D : (KeyCode)PlayerPrefs.GetInt("Line3");
+        keyCode[3] = PlayerPrefs.GetInt("Line4", (int)KeyCode.F) == (int)KeyCode.F ? KeyCode.F : (KeyCode)PlayerPrefs.GetInt("Line4");
+        keyCode[4] = PlayerPrefs.GetInt("Line5", (int)KeyCode.H) == (int)KeyCode.H ? KeyCode.H : (KeyCode)PlayerPrefs.GetInt("Line5");
+        keyCode[5] = PlayerPrefs.GetInt("Line6", (int)KeyCode.J) == (int)KeyCode.J ? KeyCode.J : (KeyCode)PlayerPrefs.GetInt("Line6");
+        keyCode[6] = PlayerPrefs.GetInt("Line7", (int)KeyCode.K) == (int)KeyCode.K ? KeyCode.K : (KeyCode)PlayerPrefs.GetInt("Line7");
+        keyCode[7] = PlayerPrefs.GetInt("Line8", (int)KeyCode.L) == (int)KeyCode.L ? KeyCode.L : (KeyCode)PlayerPrefs.GetInt("Line8");
 
         nodeType = PlayerPrefs.GetInt("nodeType", 0);
         nodeStartPos = PlayerPrefs.GetInt("nodeStartPos", 0);
@@ -106,18 +106,14 @@ public class GameData : MonoBehaviour
         PlayerPrefs.SetInt("UIBlackMode", 0);
         PlayerPrefs.SetInt("effect", 1);
 
-        for (int i = 0; i < keyCode.Length; i++)
-        {
-            PlayerPrefs.SetInt($"Line{i}", i);
-        }
-        // PlayerPrefs.SetInt("Line1", (int)KeyCode.A);
-        // PlayerPrefs.SetInt("Line2", (int)KeyCode.S);
-        // PlayerPrefs.SetInt("Line3", (int)KeyCode.D);
-        // PlayerPrefs.SetInt("Line4", (int)KeyCode.F);
-        // PlayerPrefs.SetInt("Line5", (int)KeyCode.H);
-        // PlayerPrefs.SetInt("Line6", (int)KeyCode.J);
-        // PlayerPrefs.SetInt("Line7", (int)KeyCode.K);
-        // PlayerPrefs.SetInt("Line8", (int)KeyCode.L);
+        PlayerPrefs.SetInt("Line1", (int)KeyCode.A);
+        PlayerPrefs.SetInt("Line2", (int)KeyCode.S);
+        PlayerPrefs.SetInt("Line3", (int)KeyCode.D);
+        PlayerPrefs.SetInt("Line4", (int)KeyCode.F);
+        PlayerPrefs.SetInt("Line5", (int)KeyCode.H);
+        PlayerPrefs.SetInt("Line6", (int)KeyCode.J);
+        PlayerPrefs.SetInt("Line7", (int)KeyCode.K);
+        PlayerPrefs.SetInt("Line8", (int)KeyCode.L);
         
         PlayerPrefs.SetInt("nodeType", 0);
         PlayerPrefs.SetInt("nodeStartPos", 0);
@@ -165,8 +161,9 @@ public class GameData : MonoBehaviour
         {
             num = 0;
         }
-        
         PlayerPrefs.SetInt("nodeType", num);
+
+        nodeType = num;
         return nodeTypeString[num];
     }
 
@@ -176,8 +173,10 @@ public class GameData : MonoBehaviour
         {
             num = 0;
         }
+        
         PlayerPrefs.SetInt("nodeStartPos", num);
 
+        nodeStartPos = num;
         return nodeStartPosString[num];
     }
 

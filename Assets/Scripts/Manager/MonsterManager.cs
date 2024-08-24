@@ -123,6 +123,7 @@ public class MonsterManager : MonoBehaviour
     public void Wave()
     {
         int num = UnityEngine.Random.Range(0, 4);
+        
 
         if (WaveNum < 5)
         {
@@ -132,7 +133,7 @@ public class MonsterManager : MonoBehaviour
                 Monster temp = obj.GetComponent<Monster>();
                 MonsterInfo type = (MonsterInfo)Random.Range(0, (int)MonsterInfo.subBoss);
                 temp.monsterInfo = type;
-                //obj.GetComponent<Renderer>().material.mainTexture = monte
+                //obj.GetComponent<Renderer>().material.mainTexture = monTexture[(int)type];
                 temp.SetMonster();
                 monsters.Add(obj.GetComponent<Monster>());
             }

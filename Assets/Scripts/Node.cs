@@ -16,15 +16,14 @@ public class Node : MonoBehaviour
     public float sizeTimer = 1.5f;
 
     public bool isItem;
-    // Start is called before the first frame update
-    void Start()
+    
+    private void Start()
     {
         SetNode();
         nodeManager = FindObjectOfType<NodeManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (!isStop)
         {

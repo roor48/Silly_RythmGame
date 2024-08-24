@@ -107,6 +107,7 @@ public class Monster : MonoBehaviour
             }
         }
     }
+    
     public void SetMonster()
     {
         switch (monsterInfo)

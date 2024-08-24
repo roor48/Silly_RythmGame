@@ -278,15 +278,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlManager: {fileID: 0}
   characterManager: {fileID: 0}
-  prefabNode: {fileID: 8498598168698105580, guid: 1773be2512e22f746a38d757974a4c88, type: 3}
+  monsterManager: {fileID: 0}
   Spawns:
   - {fileID: 53370039}
   - {fileID: 1658743631}
   - {fileID: 1898784903}
   - {fileID: 1349811307}
-  speed: 2
+  prefabNode: {fileID: 8498598168698105580, guid: 1773be2512e22f746a38d757974a4c88, type: 3}
+  NodeCount: 10
+  LeftTop: {fileID: 0}
+  RightBottom: {fileID: 0}
+  Cloudy: {fileID: 0}
+  isCloudy: 0
+  cloudyTimer: 5
+  cloudyTiming: 0
+  cloudyTimerRepeat: 1
+  cloudyTimingRepeat: 0
+  isGhost: 0
+  ghostTimer: 3
+  ghostTiming: 0
   isNodeDown: 0
+  downTimer: 2
   downTiming: 0
+  invisibleTimer: 0
+  items: []
+  speed: 2
 --- !u!1 &203965967
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,6 +681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df95ef6a51c2c474cb04bfa91a23b9ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameData: {fileID: 0}
   characterManager: {fileID: 0}
   cons:
   - {fileID: 1854005770}
@@ -679,7 +696,9 @@ MonoBehaviour:
   maxBlockMiss: 10
   perfectTimer: 5
   perfectTiming: 0
-  prefabTouchEffect: []
+  prefabTouchEffect:
+  - {fileID: 1841442645933475659, guid: 156f9a35190d1a74a9704bc7cca693ae, type: 3}
+  - {fileID: 2253567804937787872, guid: 43cef83c75b85e2468c6fdf3cb9489f1, type: 3}
   doubleEnergy: 1
   isDouble: 0
   doubleTimer: 4
@@ -844,6 +863,75 @@ MonoBehaviour:
   cameraTiming: 0
   itemStopTimer: 2
   itemStopTiming: 0
+--- !u!1 &783146559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 783146560}
+  - component: {fileID: 783146561}
+  m_Layer: 0
+  m_Name: GameData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &783146560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783146559}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 820.92773, y: 699.00635, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &783146561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783146559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb766e5891232c48a3c7c4e8d187161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Score: []
+  dieMonsterNum: 0
+  gameTime: 0
+  curScore: 0
+  pickItem: 0
+  nodeNum: 0
+  toalSuccess: 0
+  averageSuccess: 0
+  isBackMusic: 1
+  isSound: 1
+  isJudSound: 1
+  blackMode: 0
+  UIBlackMode: 0
+  effect: 1
+  keyCode: 61000000730000006400000066000000680000006a0000006b0000006c000000
+  nodeType: 0
+  nodeStartPos: 0
+  nodeTypeString:
+  - "\uAE30\uBCF8"
+  - "\uC0C9\uC57D"
+  - "\uB3C4\uD615"
+  nodeStartPosString:
+  - "\uC67C\uCABD"
+  - "\uC911\uC559"
+  - "\uC624\uB978\uCABD"
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2128,6 +2216,7 @@ MeshFilter:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 783146560}
   - {fileID: 203965968}
   - {fileID: 963194228}
   - {fileID: 408013919}

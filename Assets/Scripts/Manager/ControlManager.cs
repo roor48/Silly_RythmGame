@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ControlManager : MonoBehaviour
 {
-
+    public GameData gameData;
     public CharacterManager characterManager;
     public Transform[] cons;
 
@@ -27,44 +27,42 @@ public class ControlManager : MonoBehaviour
 
     public LayerMask layer;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        gameData = GameObject.Find("GameData").GetComponent<GameData>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(gameData.keyCode[0]))
         {
             ConNode(cons[0].position, layer, true);
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(gameData.keyCode[1]))
         {
             ConNode(cons[1].position, layer, true);
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(gameData.keyCode[2]))
         {
             ConNode(cons[2].position, layer, true);
         }
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(gameData.keyCode[3]))
         {
             ConNode(cons[3].position, layer, true);
         }
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(gameData.keyCode[4]))
         {
             ConNode(cons[0].position, layer, false);
         }
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(gameData.keyCode[5]))
         {
             ConNode(cons[1].position, layer, false);
         }
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(gameData.keyCode[6]))
         {
             ConNode(cons[2].position, layer, false);
         }
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(gameData.keyCode[7]))
         {
             ConNode(cons[3].position, layer, false);
         }
@@ -138,6 +136,8 @@ public class ControlManager : MonoBehaviour
                             }
  
                         }
+
+                        Instantiate(prefabTouchEffect[0], originPos, prefabTouchEffect[0].transform.rotation);
                         Debug.Log((comboCount - 1) + "콤보");
                     }
                     else
@@ -152,6 +152,8 @@ public class ControlManager : MonoBehaviour
                         Debug.Log("Good : " + ((1 - distance) * 100) + "%");
                         comboCount++;
                         Debug.Log((comboCount - 1) + "콤보");
+                        
+                        Instantiate(prefabTouchEffect[0], originPos, prefabTouchEffect[0].transform.rotation);
                     }
                 }
                 else
@@ -165,11 +167,15 @@ public class ControlManager : MonoBehaviour
                             comboCount++;
                             //SetEnergy(isBottom, 1);
                             Debug.Log((comboCount - 1) + "콤보");
+                            
+                            Instantiate(prefabTouchEffect[0], originPos, prefabTouchEffect[0].transform.rotation);
                         }
                         else
                         {
                             Debug.Log("miss : " + ((1 - distance) * 100) + "%");
                             comboCount = 0;
+                            
+                            Instantiate(prefabTouchEffect[1], originPos, prefabTouchEffect[0].transform.rotation);
                         }
                     }
                 }
